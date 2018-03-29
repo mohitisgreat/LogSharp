@@ -20,7 +20,7 @@ A flexible logging library completely written in C#.
         }
     }
 
-    class Propgram
+    class Program
     {
         static void Main(string[] args)
         {
