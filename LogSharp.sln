@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{CAB12ACB-8D5F-473F-9C16-A11972567259}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileLogging", "Examples\FileLogging\FileLogging.csproj", "{732FD5D3-A4B6-4EF8-9BFE-54CA4044E4D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +25,16 @@ Global
 		{0BA94980-3946-404A-9ADC-348609EE9987}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BA94980-3946-404A-9ADC-348609EE9987}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BA94980-3946-404A-9ADC-348609EE9987}.Release|Any CPU.Build.0 = Release|Any CPU
+		{732FD5D3-A4B6-4EF8-9BFE-54CA4044E4D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{732FD5D3-A4B6-4EF8-9BFE-54CA4044E4D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{732FD5D3-A4B6-4EF8-9BFE-54CA4044E4D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{732FD5D3-A4B6-4EF8-9BFE-54CA4044E4D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{732FD5D3-A4B6-4EF8-9BFE-54CA4044E4D8} = {CAB12ACB-8D5F-473F-9C16-A11972567259}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A7B30B46-9F56-4C2D-A9BC-2C5386935946}
