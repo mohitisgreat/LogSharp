@@ -28,19 +28,18 @@ namespace LogSharp.Utils
         /// <param name="linenum">Line number</param>
         /// <param name="message">The log message(the value of message property)</param>
         public string FormatString(string filename, LogSeverity severity, int linenum, string message)
-        {
-            DateTime now = DateTime.Now;
-
-            formatter.SetProperty("Hour", now.Hour.ToString("00"));
-            formatter.SetProperty("hour", (((now.Hour + 11) % 12) + 1).ToString("00"));
-            formatter.SetProperty("meridian", (now.Hour >= 12) ? "PM" : "AM");
-            formatter.SetProperty("minute", now.Minute.ToString("00"));
-            formatter.SetProperty("second", now.Second.ToString("00"));
-            formatter.SetProperty("year", now.Year.ToString("0000"));
-            formatter.SetProperty("month", now.Month.ToString("00"));
-            formatter.SetProperty("day", now.Day.ToString("00"));
-            formatter.SetProperty("dayofweek", now.DayOfWeek.ToString());
-            formatter.SetProperty("dayofyear", now.DayOfYear.ToString("000"));
+        {            
+            formatter.SetProperty("Hour", DateTime.Now.Hour.ToString("00"));
+            formatter.SetProperty("hour", (((DateTime.Now.Hour + 11) % 12) + 1).ToString("00"));
+            formatter.SetProperty("meridian", (DateTime.Now.Hour >= 12) ? "PM" : "AM");
+            formatter.SetProperty("minute", DateTime.Now.Minute.ToString("00"));
+            formatter.SetProperty("second", DateTime.Now.Second.ToString("00"));
+            formatter.SetProperty("year", DateTime.Now.Year.ToString("0000"));
+            formatter.SetProperty("month", DateTime.Now.Month.ToString("00"));
+            formatter.SetProperty("day", DateTime.Now.Day.ToString("00"));
+            formatter.SetProperty("dayofweek", DateTime.Now.DayOfWeek.ToString());
+            formatter.SetProperty("dayofyear", DateTime.Now.DayOfYear.ToString("000"));
+            formatter.SetProperty("weekday", DateTime.Now.ToString("dddd"));
 
             formatter.SetProperty("file", filename);
             formatter.SetProperty("line", linenum.ToString());

@@ -67,6 +67,14 @@ namespace LogSharp.Utils
             return builder.ToString();
         }
 
+        public override string ToString()
+        {
+            return FormatString();
+        }
+
+        /// <summary>
+        /// Returns the next identifier in curly braces.
+        /// </summary>
         private string Identifier()
         {
             try {
@@ -89,6 +97,9 @@ namespace LogSharp.Utils
             }
         }
 
+        /// <summary>
+        /// Returns the string breaks on curly braces.
+        /// </summary>
         private string StringLit()
         {
             StringBuilder stringBuilder = new StringBuilder();
