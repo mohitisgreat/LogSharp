@@ -6,7 +6,8 @@ using LogSharp.Utils;
 namespace LogSharp.Appenders
 {
     /// <summary>
-    /// Appender that'll 
+    /// Appender that'll log messages to file and if the file extends it limit it
+    /// moves to the next file.
     /// </summary>
     public class RollingFileAppender: ILogAppender
     {
