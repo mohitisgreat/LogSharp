@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Appenders\ConsoleAppender.cs" />
     <Compile Include="Appenders\FileAppender.cs" />
+    <Compile Include="Appenders\RollingFileAppender.cs" />
     <Compile Include="IErrorHandler.cs" />
     <Compile Include="ILogAppender.cs" />
     <Compile Include="ILogFilter.cs" />
