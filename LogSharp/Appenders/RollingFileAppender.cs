@@ -47,11 +47,10 @@ namespace LogSharp.Appenders
         {
             uint messageSize = (uint)(message.Length);
 
-            if ((bytesWritten + messageSize) > MaxFileSize)
+            if ((writer.BaseStream.Length + messageSize) > MaxFileSize)
                 NextFile();
 
             writer.WriteLine(message);
-            bytesWritten += messageSize;
         }
 
         /// <summary>
@@ -114,14 +113,14 @@ namespace LogSharp.Appenders
 
             string fileName = Path.Combine(ParentDirectory, Formatter.ToString());
 
-            writer = new StreamWriter(File.Open(fileName, FileMode.Append));
+            writer = new StreamWriter(File.Open(fileName, FileMode.Append)) {
+                AutoFlush = true
+            };
 
-            bytesWritten = 0;
             ++FileCount;
         }
         
         private StringFormatter Formatter { get; set; }
         private StreamWriter writer;
-        private uint bytesWritten = 0;
     }
 }
