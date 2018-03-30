@@ -54,7 +54,7 @@ namespace LogSharp.Utils
         /// </summary>
         public string Pattern {
             get { return formatter.Pattern;  }
-            set { formatter = new StringFormatter(value); }
+            set { formatter.Pattern = value; }
         }
 
         private static string[] severityLevels = {

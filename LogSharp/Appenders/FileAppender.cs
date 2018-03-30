@@ -65,7 +65,7 @@ namespace LogSharp.Appenders
         public string FilePattern 
         {
             get { return Formatter.Pattern; }
-            set { Formatter = new StringFormatter(value); }
+            set { Formatter.Pattern = value; }
         }
 
         /// <summary> 

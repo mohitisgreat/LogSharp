@@ -16,26 +16,18 @@ namespace LogSharp.Utils
         /// <param name="format"></param>
         public StringFormatter(String format)
         {
-            this.Pattern = format;
-
+            Pattern = format;
             values = new Dictionary<string, string>();
-            tokens = new List<Token>();
+        }
 
-            position = 0;
-
-            while (position < Pattern.Length) {
-                if (Pattern[position] == '{') {
-                    tokens.Add(new Token(TokenType.IDENTIFIER, Identifier()));
-                } else {
-                    tokens.Add(new Token(TokenType.STRINGLIT, StringLit()));
-                }
-            }
+        public StringFormatter() : this("")
+        {
         }
 
         /// <summary>
         /// Returns the format which is begin used.
         /// </summary>
-        public string Pattern { get; }
+        public string Pattern { get; set; }
 
         /// <summary>
         /// Set the property.
@@ -54,13 +46,27 @@ namespace LogSharp.Utils
         public string FormatString()
         {
             StringBuilder builder = new StringBuilder();
-            foreach (Token tok in tokens) {
-                if (tok.Type == TokenType.IDENTIFIER) {
-                    if (values.ContainsKey(tok.Value)) {
-                        builder.Append(values[tok.Value]);
+
+            for (int x = 0; x < Pattern.Length; ++x) {
+                if (Pattern[x] == '{') {
+                    ++x;
+
+                    StringBuilder identifierBuilder = new StringBuilder();
+
+                    for (; x < Pattern.Length; ++x) {
+                        if (Pattern[x] == '}') {
+                            string identifier = identifierBuilder.ToString();
+                            if (values.ContainsKey(identifier)) {
+                                builder.Append(values[identifier]);
+                            }
+
+                            break;
+                        } else {
+                            identifierBuilder.Append(Pattern[x]);
+                        }
                     }
-                } else if (tok.Type == TokenType.STRINGLIT) {
-                    builder.Append(tok.Value);
+                } else {
+                    builder.Append(Pattern[x]);
                 }
             }
 
@@ -72,66 +78,7 @@ namespace LogSharp.Utils
             return FormatString();
         }
 
-        /// <summary>
-        /// Returns the next identifier in curly braces.
-        /// </summary>
-        private string Identifier()
-        {
-            try {
-                if (Pattern[position] == '{') {
-                    ++position;
-
-                    StringBuilder stringBuilder = new StringBuilder();
-                    while (Pattern[position] != '}') {
-                        stringBuilder.Append(Pattern[position]);
-                        ++position;
-                    }
-                    ++position;
-
-                    return stringBuilder.ToString();
-                } else {
-                    return null; // Not an identifier.
-                }
-            } catch (IndexOutOfRangeException) {
-                throw new Exception("No closing '}' found.");
-            }
-        }
-
-        /// <summary>
-        /// Returns the string breaks on curly braces.
-        /// </summary>
-        private string StringLit()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-            while (position < Pattern.Length && Pattern[position] != '{') {
-                stringBuilder.Append(Pattern[position]);
-                ++position;
-            }
-            return stringBuilder.ToString();
-        }
         private Dictionary<string, string> values;
-        private List<Token> tokens;
-        private int position;
-
-        enum TokenType
-        {
-            IDENTIFIER,
-            STRINGLIT
-        }
-        
-        struct Token
-        {
-            public TokenType Type;
-            public string Value;
-
-            public Token(TokenType tokenType, string value)
-            {
-                this = new Token {
-                    Type = tokenType,
-                    Value = value
-                };
-            }
-        }
     }
 }
  

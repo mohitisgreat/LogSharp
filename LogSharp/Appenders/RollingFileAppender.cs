@@ -15,7 +15,7 @@ namespace LogSharp.Appenders
         {
             // Default Settings
             MaxFileSize = 1024;
-            FilePattern = "application_{filenumber}.log";
+            Formatter = new StringFormatter("application_{filenumber}.log");
             FileCount = 0;
             ParentDirectory = Directory.GetCurrentDirectory();
 
@@ -66,7 +66,7 @@ namespace LogSharp.Appenders
         public string FilePattern 
         {
             get { return Formatter.Pattern; }
-            set { Formatter = new StringFormatter(value); }
+            set { Formatter.Pattern = value; }
         }
 
         /// <summary>
