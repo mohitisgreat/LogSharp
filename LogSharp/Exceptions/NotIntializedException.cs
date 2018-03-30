@@ -3,6 +3,10 @@ using System.Runtime.Serialization;
 
 namespace LogSharp.Exceptions
 {
+    /// <summary>
+    /// Exception which is thrown when LogManager is used without being
+    /// initialized at all.
+    /// </summary>
     [Serializable]
     public class NotIntializedException : Exception
     {

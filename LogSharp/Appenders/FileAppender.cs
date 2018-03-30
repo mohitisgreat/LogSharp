@@ -5,8 +5,16 @@ using LogSharp.Utils;
 
 namespace LogSharp.Appenders
 {
+    /// <summary>
+    /// A appender to append log messages to the file.
+    /// </summary>
     public class FileAppender : ILogAppender
     {
+        /// <summary>
+        /// Construct a new file appender.
+        /// </summary>
+        /// <param name="parentFolder">The path to the folder where log files will be created.</param>
+        /// <param name="filePattern">The file pattern.</param>
         public FileAppender(string parentFolder, string filePattern)
         {
             Formatter = new StringFormatter(filePattern);
@@ -36,6 +44,9 @@ namespace LogSharp.Appenders
             }
         }
 
+        /// <summary>
+        /// Append the log message to the file stream.
+        /// </summary>
         public void AppendLog(LogSeverity logSeverity, string message)
         {
             if (writer != null) {
@@ -43,13 +54,23 @@ namespace LogSharp.Appenders
             }
         }
 
+        /// <summary>
+        /// Represents parent folder where the log files are created.
+        /// <summary>
         public string ParentFolder { get; set; }
+
+        /// <summary>
+        /// Represents the pattern of the log file.
+        /// </summary>
         public string FilePattern 
         {
             get { return Formatter.Pattern; }
             set { Formatter = new StringFormatter(value); }
         }
 
+        /// <summary> 
+        /// Returns the path of the log file which is open.
+        /// </summary>
         public string FileName { get; private set; }
 
         private StringFormatter Formatter { get; set; }
